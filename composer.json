@@ -1,7 +1,8 @@
 {
     "name": "boxspaced/cms-account-module",
     "require": {
-        
+        "boxspaced/cms-core-module": "dev-master",
+        "zendframework/zend-permissions-acl": "^2.6"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -13,5 +14,11 @@
     "config": {
         "bin-dir": "bin/",
         "process-timeout": 1200
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/boxspaced/cms-core-module"
+        }
+    ]
 }
