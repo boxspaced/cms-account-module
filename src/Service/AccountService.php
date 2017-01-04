@@ -93,7 +93,7 @@ class AccountService
         $identity = new Identity();
         $identity->id = $data->id;
         $identity->username = $data->username;
-        $identity->roles[] = 'guest';
+        $identity->roles[] = 'authenticated-user';
 
         foreach ($roles as $role) {
 

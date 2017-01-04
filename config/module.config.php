@@ -3,7 +3,6 @@ namespace Account;
 
 use Boxspaced\EntityManager\Entity\AbstractEntity;
 use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\Authentication\AuthenticationService;
 use Core\Model\RepositoryFactory;
 
@@ -34,7 +33,7 @@ return [
     'service_manager' => [
         'factories' => [
             AuthenticationService::class => Auth\AuthenticationServiceFactory::class,
-            Auth\Acl::class => InvokableFactory::class,
+            Auth\Acl::class => Auth\AclFactory::class,
             Service\AccountService::class => Service\AccountServiceFactory::class,
             Model\UserRepository::class => RepositoryFactory::class,
         ]
