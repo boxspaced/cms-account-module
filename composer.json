@@ -1,8 +1,7 @@
 {
     "name": "boxspaced/cms-account-module",
     "require": {
-        "boxspaced/cms-core-module": "dev-master",
-        "zendframework/zend-permissions-acl": "^2.6"
+        "boxspaced/cms-core-module": "dev-master"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
