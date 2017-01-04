@@ -14,7 +14,7 @@ class Acl extends ZendAcl
         $this->addResource(new Resource(AccountController::class));
 
         $this->addRole(new Role('guest'));
-        $this->addRole(new Role('authenticated-user'));
+        $this->addRole(new Role('authenticated-user'), 'guest');
         $this->addRole(new Role('author'), 'authenticated-user');
         $this->addRole(new Role('publisher'), 'authenticated-user');
 
