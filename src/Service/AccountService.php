@@ -38,6 +38,11 @@ class AccountService
     protected $config;
 
     /**
+     * @var Sql
+     */
+    protected $sql;
+
+    /**
      * @param AuthenticationService $authService
      * @param Acl $acl
      * @param Database $db
@@ -57,6 +62,7 @@ class AccountService
         $this->db = $db;
         $this->logger = $logger;
         $this->config = $config;
+        $this->sql = new Sql($db);
     }
 
     /**
@@ -68,26 +74,54 @@ class AccountService
     {
         $this->authService->getAdapter()
             ->setIdentity($username)
-            ->setCredential(hash($this->config['account']['password_hashing_algorithm'], $password));
+            ->setCredential($password);
 
         $result = $this->authService->authenticate();
 
         if (!$result->isValid()) {
-            return null;
+
+            if (!isset($this->config['account']['password_hashing_algorithm'])) {
+                return null;
+            }
+
+            $adapter = new Adapter($this->db);
+            $adapter->setTableName('user');
+            $adapter->setIdentityColumn('username');
+            $adapter->setCredentialColumn('password');
+            $adapter->setIdentity($username);
+            $adapter->setCredential(hash($this->config['account']['password_hashing_algorithm'], $password));
+
+            $this->authService->setAdapter($adapter);
+
+            $result = $this->authService->authenticate();
+
+            if (!$result->isValid()) {
+                return null;
+            }
+
+            // Authenticated, but has an old password
+            $update = $this->sql->update('user');
+            $update->set([
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ]);
+            $update->where([
+                'username = ?' => $username,
+            ]);
+
+            $stmt = $this->sql->prepareStatementForSqlObject($update);
+            $stmt->execute();
         }
 
         $data = $this->authService->getAdapter()->getResultRowObject(null, 'password');
 
-        $sql = new Sql($this->db);
-
-        $select = $sql->select();
+        $select = $this->sql->select();
         $select->from('user_role');
         $select->join('role', 'role.id = user_role.role_id');
         $select->where([
             'user_role.user_id = ?' => $data->id,
         ]);
 
-        $stmt = $sql->prepareStatementForSqlObject($select);
+        $stmt = $this->sql->prepareStatementForSqlObject($select);
         $roles = $stmt->execute()->getResource()->fetchAll();
 
         $identity = new Identity();
