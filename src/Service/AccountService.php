@@ -8,6 +8,7 @@ use Zend\Db\Sql\Sql;
 use Zend\Log\Logger;
 use Zend\Filter\StaticFilter;
 use Zend\Filter\Word\DashToCamelCase;
+use Zend\Authentication\Adapter\DbTable as DbTableAdapter;
 
 class AccountService
 {
@@ -84,7 +85,7 @@ class AccountService
                 return null;
             }
 
-            $adapter = new Adapter($this->db);
+            $adapter = new DbTableAdapter($this->db);
             $adapter->setTableName('user');
             $adapter->setIdentityColumn('username');
             $adapter->setCredentialColumn('password');
