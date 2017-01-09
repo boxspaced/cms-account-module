@@ -105,7 +105,7 @@ class User extends AbstractEntity
      */
     public function getLastLogin()
     {
-        return $this->get('lastLogin');
+        return $this->get('last_login');
     }
 
     /**
@@ -114,7 +114,7 @@ class User extends AbstractEntity
      */
     public function setLastLogin(DateTime $lastLogin = null)
     {
-        $this->set('lastLogin', $lastLogin);
+        $this->set('last_login', $lastLogin);
 		return $this;
     }
 
@@ -123,7 +123,7 @@ class User extends AbstractEntity
      */
     public function getThisLogin()
     {
-        return $this->get('thisLogin');
+        return $this->get('this_login');
     }
 
     /**
@@ -132,7 +132,7 @@ class User extends AbstractEntity
      */
     public function setThisLogin(DateTime $thisLogin = null)
     {
-        $this->set('thisLogin', $thisLogin);
+        $this->set('this_login', $thisLogin);
 		return $this;
     }
 
@@ -159,7 +159,7 @@ class User extends AbstractEntity
      */
     public function getEverBeenActivated()
     {
-        return $this->get('everBeenActivated');
+        return $this->get('ever_been_activated');
     }
 
     /**
@@ -168,7 +168,7 @@ class User extends AbstractEntity
      */
     public function setEverBeenActivated($everBeenActivated)
     {
-        $this->set('everBeenActivated', $everBeenActivated);
+        $this->set('ever_been_activated', $everBeenActivated);
 		return $this;
     }
 
@@ -177,7 +177,7 @@ class User extends AbstractEntity
      */
     public function getRegisteredTime()
     {
-        return $this->get('registeredTime');
+        return $this->get('registered_time');
     }
 
     /**
@@ -186,7 +186,7 @@ class User extends AbstractEntity
      */
     public function setRegisteredTime(DateTime $registeredTime = null)
     {
-        $this->set('registeredTime', $registeredTime);
+        $this->set('registered_time', $registeredTime);
 		return $this;
     }
 

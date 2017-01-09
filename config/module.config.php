@@ -73,19 +73,19 @@ return [
                         'password' => [
                             'type' => AbstractEntity::TYPE_STRING,
                         ],
-                        'lastLogin' => [
+                        'last_login' => [
                             'type' => AbstractEntity::TYPE_DATETIME,
                         ],
-                        'thisLogin' => [
+                        'this_login' => [
                             'type' => AbstractEntity::TYPE_DATETIME,
                         ],
                         'activated' => [
                             'type' => AbstractEntity::TYPE_BOOL,
                         ],
-                        'everBeenActivated' => [
+                        'ever_been_activated' => [
                             'type' => AbstractEntity::TYPE_BOOL,
                         ],
-                        'registeredTime' => [
+                        'registered_time' => [
                             'type' => AbstractEntity::TYPE_DATETIME,
                         ],
                     ],
