@@ -174,7 +174,7 @@ class AccountService
             $resource = str_replace(
                 '##',
                 StaticFilter::execute($resource, DashToCamelCase::class),
-                '##\\Controller\\##Controller'
+                'Boxspaced\\Cms##Module\\Controller\\##Controller'
             );
         }
 
