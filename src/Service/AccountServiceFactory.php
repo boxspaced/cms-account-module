@@ -1,11 +1,11 @@
 <?php
-namespace Account\Service;
+namespace Boxspaced\CmsAccountModule\Service;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Boxspaced\EntityManager\EntityManager;
 use Zend\Authentication\AuthenticationService;
-use Account\Auth\Acl;
+use Boxspaced\CmsAccountModule\Auth\Acl;
 use Zend\Log\Logger;
 
 class AccountServiceFactory implements FactoryInterface

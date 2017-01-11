@@ -1,5 +1,5 @@
 <?php
-namespace Account\Service;
+namespace Boxspaced\CmsAccountModule\Service;
 
 class Identity
 {

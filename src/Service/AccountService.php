@@ -1,8 +1,8 @@
 <?php
-namespace Account\Service;
+namespace Boxspaced\CmsAccountModule\Service;
 
 use Zend\Authentication\AuthenticationService;
-use Account\Auth\Acl;
+use Boxspaced\CmsAccountModule\Auth\Acl;
 use Zend\Db\Adapter\Adapter as Database;
 use Zend\Db\Sql\Sql;
 use Zend\Log\Logger;

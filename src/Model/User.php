@@ -1,5 +1,5 @@
 <?php
-namespace Account\Model;
+namespace Boxspaced\CmsAccountModule\Model;
 
 use DateTime;
 use Boxspaced\EntityManager\Entity\AbstractEntity;

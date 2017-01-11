@@ -1,10 +1,10 @@
 <?php
-namespace Account;
+namespace Boxspaced\CmsAccountModule;
 
 use Boxspaced\EntityManager\Entity\AbstractEntity;
 use Zend\Router\Http\Segment;
 use Zend\Authentication\AuthenticationService;
-use Core\Model\RepositoryFactory;
+use Boxspaced\CmsCoreModule\Model\RepositoryFactory;
 
 return [
     'account' => [

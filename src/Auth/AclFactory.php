@@ -1,5 +1,5 @@
 <?php
-namespace Account\Auth;
+namespace Boxspaced\CmsAccountModule\Auth;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;

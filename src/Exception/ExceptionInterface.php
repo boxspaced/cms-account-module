@@ -1,5 +1,5 @@
 <?php
-namespace Account\Exception;
+namespace Boxspaced\CmsAccountModule\Exception;
 
 interface ExceptionInterface
 {

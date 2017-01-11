@@ -1,10 +1,10 @@
 <?php
-namespace Account\Auth;
+namespace Boxspaced\CmsAccountModule\Auth;
 
 use Zend\Permissions\Acl\Acl as ZendAcl;
 use Zend\Permissions\Acl\Role\GenericRole as Role;
 use Zend\Permissions\Acl\Resource\GenericResource as Resource;
-use Account\Controller\AccountController;
+use Boxspaced\CmsAccountModule\Controller\AccountController;
 
 class Acl extends ZendAcl
 {

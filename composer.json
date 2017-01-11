@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Account\\": "src/"
+            "Boxspaced\\CmsAccountModule\\": "src/"
         }
     },
     "config": {
@@ -30,7 +30,7 @@
     ],
     "extra": {
         "zf": {
-            "module": "Account"
+            "module": "Boxspaced\\CmsAccountModule"
         }
     }
 }

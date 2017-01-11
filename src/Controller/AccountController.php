@@ -1,11 +1,11 @@
 <?php
-namespace Account\Controller;
+namespace Boxspaced\CmsAccountModule\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Account\Service;
+use Boxspaced\CmsAccountModule\Service;
 use Zend\Log\Logger;
-use Account\Form;
+use Boxspaced\CmsAccountModule\Form;
 use Zend\Uri\UriFactory;
 
 class AccountController extends AbstractActionController

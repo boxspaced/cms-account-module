@@ -1,12 +1,12 @@
 <?php
-namespace Account\Controller;
+namespace Boxspaced\CmsAccountModule\Controller;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
-use Account\Controller\AccountController;
-use Account\Service\AccountService;
+use Boxspaced\CmsAccountModule\Controller\AccountController;
+use Boxspaced\CmsAccountModule\Service\AccountService;
 use Zend\Log\Logger;
-use Core\Controller\AbstractControllerFactory;
+use Boxspaced\CmsCoreModule\Controller\AbstractControllerFactory;
 
 class AccountControllerFactory extends AbstractControllerFactory implements FactoryInterface
 {

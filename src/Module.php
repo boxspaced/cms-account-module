@@ -1,9 +1,9 @@
 <?php
-namespace Account;
+namespace Boxspaced\CmsAccountModule;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\AbstractActionController;
-use Account\Service\AccountService;
+use Boxspaced\CmsAccountModule\Service\AccountService;
 use Zend\Http\Response;
 
 class Module
