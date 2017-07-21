@@ -7,7 +7,6 @@ use Boxspaced\CmsAccountModule\Service;
 use Zend\Log\Logger;
 use Boxspaced\CmsAccountModule\Form;
 use Zend\Uri\UriFactory;
-use Zend\EventManager\EventManagerInterface;
 
 class AccountController extends AbstractActionController
 {
@@ -43,26 +42,15 @@ class AccountController extends AbstractActionController
     }
 
     /**
-     * @param EventManagerInterface $events
-     * @return void
-     */
-    public function setEventManager(EventManagerInterface $events)
-    {
-        parent::setEventManager($events);
-        $controller = $this;
-        $events->attach('dispatch', function ($e) use ($controller) {
-            $controller->layout('layout/admin');
-        }, 100);
-    }
-
-    /**
      * @return void
      */
     public function indexAction()
     {
+        $this->layout('layout/admin');
+
         $adminNavigation = $this->adminNavigationWidget();
         if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
+            $this->layout()->addChild($adminNavigation, 'adminNavigation');
         }
 
         return $this->view;
@@ -73,6 +61,8 @@ class AccountController extends AbstractActionController
      */
     public function loginAction()
     {
+        $this->layout('layout/dialog');
+
         $form = new Form\AccountLoginForm();
         $form->get('redirect')->setValue($this->params()->fromQuery('redirect'));
 
@@ -131,7 +121,7 @@ class AccountController extends AbstractActionController
      */
     public function accessDeniedAction()
     {
-        // @todo response 401
+        $this->view->setTerminal(true);
         return $this->view;
     }
 
