@@ -7,6 +7,7 @@ use Boxspaced\CmsAccountModule\Service;
 use Zend\Log\Logger;
 use Boxspaced\CmsAccountModule\Form;
 use Zend\Uri\UriFactory;
+use Zend\EventManager\EventManagerInterface;
 
 class AccountController extends AbstractActionController
 {
@@ -39,7 +40,19 @@ class AccountController extends AbstractActionController
         $this->logger = $logger;
 
         $this->view = new ViewModel();
-        $this->view->setTerminal(true);
+    }
+
+    /**
+     * @param EventManagerInterface $events
+     * @return void
+     */
+    public function setEventManager(EventManagerInterface $events)
+    {
+        parent::setEventManager($events);
+        $controller = $this;
+        $events->attach('dispatch', function ($e) use ($controller) {
+            $controller->layout('layout/admin');
+        }, 100);
     }
 
     /**
