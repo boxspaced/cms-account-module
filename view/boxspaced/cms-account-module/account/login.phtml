@@ -1,32 +1,29 @@
 
-                <div class="white-box">
-                    <div class="white-box-rounded-corner-top"><div></div></div>
-                    <div class="white-box-content">
-                        <div class="white-box-title">Login</div>
+                <fieldset>
+                    <legend>Login</legend>
 
-                        <?php echo $this->messages() ?>
+                    <?php echo $this->messages() ?>
 
-                        <?php
-                        $form = $this->form;
-                        $form->prepare();
-                        ?>
+                    <?php
+                    $form = $this->form;
+                    $form->prepare();
+                    ?>
 
-                        <?php echo $this->form()->openTag($form) ?>
+                    <?php echo $this->form()->openTag($form) ?>
 
-                            <?php echo $this->adminFormElement($form->get('redirect')) ?>
-                            <?php echo $this->adminFormElement($form->get('username')) ?>
-                            <?php echo $this->adminFormElement($form->get('password')) ?>
+                        <?php echo $this->adminFormElement($form->get('redirect')) ?>
+                        <?php echo $this->adminFormElement($form->get('username')) ?>
+                        <?php echo $this->adminFormElement($form->get('password')) ?>
 
-                            <div class="form-element">
-                                <div class="form-inputs line-up">
-                                    <?php
-                                    $form->get('login')->setAttribute('class', 'button');
-                                    echo $this->formElement($form->get('login'));
-                                    ?>
-                                </div>
+                        <div class="form-element">
+                            <div class="form-inputs line-up">
+                                <?php
+                                $form->get('login')->setAttribute('class', 'button');
+                                echo $this->formElement($form->get('login'));
+                                ?>
                             </div>
+                        </div>
 
-                        <?php echo $this->form()->closeTag() ?>
+                    <?php echo $this->form()->closeTag() ?>
 
-                    </div>
-                </div>
+                </fieldset>
