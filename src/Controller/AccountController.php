@@ -47,12 +47,6 @@ class AccountController extends AbstractActionController
     public function indexAction()
     {
         $this->layout('layout/admin');
-
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->layout()->addChild($adminNavigation, 'adminNavigation');
-        }
-
         return $this->view;
     }
 
