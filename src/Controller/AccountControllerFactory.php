@@ -18,7 +18,7 @@ class AccountControllerFactory extends AbstractControllerFactory implements Fact
             $container->get(Logger::class)
         );
 
-        $this->adminNavigationWidget($controller);
+        $this->adminNavigationWidget($controller, $container);
 
         return $this->forceHttps($controller, $container);
     }
