@@ -6,6 +6,7 @@
 
                     <?php
                     $form = $this->form;
+                    $form->setAttribute('class', 'form-horizontal');
                     $form->prepare();
                     ?>
 
@@ -15,12 +16,14 @@
                         <?php echo $this->adminFormElement($form->get('username')) ?>
                         <?php echo $this->adminFormElement($form->get('password')) ?>
 
-                        <div class="form-element">
-                            <div class="form-inputs line-up">
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+
                                 <?php
-                                $form->get('login')->setAttribute('class', 'button');
+                                $form->get('login')->setAttribute('class', 'btn btn-primary');
                                 echo $this->formElement($form->get('login'));
                                 ?>
+
                             </div>
                         </div>
 
