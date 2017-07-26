@@ -1,7 +1,7 @@
 {
     "name": "boxspaced/cms-account-module",
     "require": {
-        "boxspaced/cms-core-module": "^1.0"
+        "boxspaced/cms-core-module": "dev-staging"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
