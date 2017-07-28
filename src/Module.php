@@ -1,15 +1,14 @@
 <?php
 namespace Boxspaced\CmsAccountModule;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
 use Boxspaced\CmsAccountModule\Service\AccountService;
+use Boxspaced\CmsCoreModule\Listener\ForceHttpsListener;
 use Zend\Http\Response;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\MvcEvent;
 
 class Module
 {
-
-    const VERSION = '1.0.0';
 
     /**
      * @return array
@@ -32,6 +31,13 @@ class Module
             AbstractActionController::class,
             MvcEvent::EVENT_DISPATCH,
             [$this, 'authorization'],
+            100
+        );
+
+        $sharedEventManager->attach(
+            AbstractActionController::class,
+            MvcEvent::EVENT_DISPATCH,
+            new ForceHttpsListener(),
             100
         );
     }
