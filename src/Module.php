@@ -1,6 +1,7 @@
 <?php
 namespace Boxspaced\CmsAccountModule;
 
+use Boxspaced\CmsAccountModule\Controller\AccountController;
 use Boxspaced\CmsAccountModule\Service\AccountService;
 use Boxspaced\CmsCoreModule\Listener\ForceHttpsListener;
 use Zend\Http\Response;
@@ -28,17 +29,17 @@ class Module
         $sharedEventManager = $eventManager->getSharedManager();
 
         $sharedEventManager->attach(
-            AbstractActionController::class,
+            AccountController::class,
             MvcEvent::EVENT_DISPATCH,
-            [$this, 'authorization'],
+            new ForceHttpsListener(),
             100
         );
 
         $sharedEventManager->attach(
             AbstractActionController::class,
             MvcEvent::EVENT_DISPATCH,
-            new ForceHttpsListener(),
-            100
+            [$this, 'authorization'],
+            99
         );
     }
 
