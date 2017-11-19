@@ -39,7 +39,6 @@ class AccountController extends AbstractActionController
         $this->logger = $logger;
 
         $this->view = new ViewModel();
-        $this->view->setTerminal(true);
     }
 
     /**
@@ -47,11 +46,7 @@ class AccountController extends AbstractActionController
      */
     public function indexAction()
     {
-        $adminNavigation = $this->adminNavigationWidget();
-        if (null !== $adminNavigation) {
-            $this->view->addChild($adminNavigation, 'adminNavigation');
-        }
-
+        $this->layout('layout/admin');
         return $this->view;
     }
 
@@ -60,6 +55,8 @@ class AccountController extends AbstractActionController
      */
     public function loginAction()
     {
+        $this->layout('layout/dialog');
+
         $form = new Form\AccountLoginForm();
         $form->get('redirect')->setValue($this->params()->fromQuery('redirect'));
 
@@ -118,7 +115,7 @@ class AccountController extends AbstractActionController
      */
     public function accessDeniedAction()
     {
-        // @todo response 401
+        $this->view->setTerminal(true);
         return $this->view;
     }
 
