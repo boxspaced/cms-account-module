@@ -75,12 +75,67 @@ class AccountController extends AbstractActionController
         }
 
         $values = $form->getData();
+        
+        $identity = $this->accountService->login($values['username'], $values['password']);
 
-        if (!$this->accountService->login($values['username'], $values['password'])) {
+        if (!$identity) {
 
             $this->flashMessenger()->addErrorMessage('The credentials provided are incorrect.');
             return $this->view;
         }
+        
+        if ($identity->changePassword) {
+            
+            return $this->redirect()->toRoute('account', [
+                'action' => 'change-password',
+            ], [
+                'query' => [
+                    'redirect' => $values['redirect'],
+                ]
+            ]);
+        }
+
+        if ($values['redirect']) {
+
+            $uri = UriFactory::factory($values['redirect']);
+            $uri->setScheme(null);
+            $uri->setHost(null);
+            $uri->setPort(null);
+            $uri->setUserInfo(null);
+
+            return $this->redirect()->toUrl($uri->toString());
+        }
+
+        return $this->redirect()->toRoute('account');
+    }
+
+    /**
+     * @return void
+     */
+    public function changePasswordAction()
+    {
+        $this->layout('layout/dialog');
+
+        $form = new Form\ChangePasswordForm();
+        $form->get('redirect')->setValue($this->params()->fromQuery('redirect'));
+
+        $this->view->form = $form;
+
+        if (!$this->getRequest()->isPost()) {
+            return $this->view;
+        }
+
+        $form->setData($this->params()->fromPost());
+
+        if (!$form->isValid()) {
+
+            $this->flashMessenger()->addErrorMessage('Validation failed.');
+            return $this->view;
+        }
+
+        $values = $form->getData();
+
+        $this->accountService->changePassword($values['password']);
 
         if ($values['redirect']) {
 

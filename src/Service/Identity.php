@@ -18,6 +18,12 @@ class Identity
 
     /**
      *
+     * @var boolean
+     */
+    public $changePassword;
+
+    /**
+     *
      * @var string[]
      */
     public $roles = [];

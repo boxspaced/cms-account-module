@@ -128,6 +128,7 @@ class AccountService
         $identity = new Identity();
         $identity->id = $data->id;
         $identity->username = $data->username;
+        $identity->changePassword = $data->change_password === '1';
         $identity->roles[] = 'authenticated-user';
 
         foreach ($roles as $role) {
@@ -140,6 +141,28 @@ class AccountService
         $this->authService->getStorage()->write($identity);
 
         return $identity;
+    }
+
+    /**
+     * @param string $password
+     * @return AccountService
+     */
+    public function changePassword($password)
+    {
+        $identity = $this->getIdentity();
+        
+        $update = $this->sql->update('user');
+        $update->set([
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ]);
+        $update->where([
+            'username = ?' => $identity->username,
+        ]);
+
+        $stmt = $this->sql->prepareStatementForSqlObject($update);
+        $stmt->execute();        
+
+        return $this;
     }
 
     /**
