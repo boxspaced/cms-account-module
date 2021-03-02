@@ -26,6 +26,7 @@ class Acl extends ZendAcl
 
         $this->allow('authenticated-user', AccountController::class, [
             'index',
+            'change-password',
         ]);
     }
 

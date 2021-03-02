@@ -154,6 +154,7 @@ class AccountService
         $update = $this->sql->update('user');
         $update->set([
             'password' => password_hash($password, PASSWORD_DEFAULT),
+            'change_password' => '0',
         ]);
         $update->where([
             'username = ?' => $identity->username,
